@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  CocoaVault
+//  Vault
 //
-//  Created by Steven Shang on 2/28/17.
+//  Created by Steven Shang on 2/27/17.
 //  Copyright © 2017 Steven Shang. All rights reserved.
 //
 

@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CocoaVault.xcscheme</key>
+		<key>Vault.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B5B1CC731E6580B700B0BAFB</key>
+		<key>B5D6A9BB1E65159400206E50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5D6A9CF1E65159500206E50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5D6A9DA1E65159500206E50</key>
 		<dict>
 			<key>primary</key>
 			<true/>
