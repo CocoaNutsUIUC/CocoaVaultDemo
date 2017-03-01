@@ -59,11 +59,11 @@ In the video, you will:
 
 4. Next, to make these buttons, textfields, and label manifest in our code, create ***outlets*** using the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and `Control + drag` your views to inside the class.
 
-    - *Note: use `Control` + drag from one view to another view to create constraints between them!*
+    - **Note: use `Control` + drag from one view to another view to create constraints between them!**
     
-    - *Note: we created 6 `IBOutlets` and 3 `IBActions`, not 9 `IBOutlets`. The `IBActions` are event-triggered functions for user interaction.*
+    - **Note: we created 6 `IBOutlets` and 3 `IBActions`, not 9 `IBOutlets`. The `IBActions` are event-triggered functions for user interaction.**
     
-    - *Note: you should have the following constraints on each of our views:*
+    - **Note: you should have the following constraints on each of our views:**
     
     <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/1.png" width="400">
     <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/2.png" width="400">
