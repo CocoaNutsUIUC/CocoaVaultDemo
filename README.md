@@ -204,7 +204,13 @@ Once you have experienced logging in with a finger, you don't want to go back to
 
 **Implementation**
 
-- Add the following function to your `ViewController` class:
+- Add the following code to your `ViewController` class:
+
+    First, add this line to the top of your file:
+
+        import LocalAuthentication
+
+    This imports the framework. Next, add the following function inside your class:
 
     ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/touch_ID.png)
 
@@ -216,4 +222,57 @@ Once you have experienced logging in with a finger, you don't want to go back to
 
     Awesome, now let's analyze our code line by line!
 
-    
+- `let context : LAContext = LAContext()` stores the current device authentication context. You need this object to request for a TouchID authentication.
+- We need a `NSError` object to store future errors and a localized string to inform the user why you want their fingerprints.
+
+        var error : NSError?
+        let localizedReasonString : String = "Use your fingerprint to access your vault."
+
+- `canEvaluatePolicy()` returns a boolean indicating whether the device supports TouchID:
+
+        guard context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            showAlert(message: "Your device does not support TouchID, try log in with password.")
+            return
+        }
+
+    Think of `guard` as a `if then` statement with nothing inside the `if{ }` block.
+
+- Finally, we call `evaluatePolicy()` with a callback block:
+
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: localizedReasonString) { (sucess, error) in
+                // Our callback block
+        }
+
+    Think of our callback block as a function that takes in two arguments, `sucesss: Bool`, and `error: Error`.
+
+- Inside our callback block, we check if we've successfully authenticated our user. If YES, we call `loadData()` in the main thread, if NO, we check to see what type of error we received:
+
+        if (sucess) {
+            DispatchQueue.main.async {
+                self.loadData()
+            }
+        } else {
+            if error != nil {
+                switch error!.\_code {
+                case LAError.Code.userCancel.rawValue:
+                    break
+                case LAError.Code.userFallback.rawValue:
+                    break
+                default:
+                    self.showAlert(message: "Something went wrong...")
+                }
+            }
+        }
+
+    Note that we only handled two types of error, `userCancel` and `userFallback`, and called `showAlert()` in all other cases. You could do something different and be more creative with error handling, for example, make changes to the UI. There're really only three cases that we need to care about:
+
+    - `systemCancel`: system stopped the authentication
+    - `userCancel`: user canceled
+    - `userFallback`: user decided to use password instead
+
+
+- To test out TouchID in a simulator, you could go to ***Hardware*** -> ***TouchID*** -> ***Toggle Enrolled State*** and press either ***Matching Touch*** or ***Non-matching Touch***
+
+---
+
+### Part III: Some Final Touch on UI
