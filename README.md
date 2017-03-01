@@ -45,9 +45,11 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 
 Steve is very much a minimalist when it comes to design. So we'll set up our app to be as simple and easy-to-use as humanly possible, which is often a good design practice!
 
-Go to ***Main.storyboard*** in your Navigator, follow the video to set up your storyboard:
+Go to *Main.storyboard* in your Navigator, follow the video to set up your storyboard:
 
-[![Storyboard_Tutorial_Video](http://img.youtube.com/vi/ypAaZUbrBeg/0.jpg)](http://www.youtube.com/watch?v=ypAaZUbrBeg "CocoaVault_Storyboard_Demo ")
+***https://www.youtube.com/watch?v=ypAaZUbrBeg***
+
+In the video, you will:
 
 1. Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
 
@@ -63,12 +65,12 @@ Go to ***Main.storyboard*** in your Navigator, follow the video to set up your s
     
     - *Note: you should have the following constraints on each of our views:*
     
-    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/1.png" width="425">
-    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/2.png" width="425">
-    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/3.png" width="425">
-    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/4.png" width="425">
-    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/5.png" width="425">
-    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/6.png" width="425">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/1.png" width="400">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/2.png" width="400">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/3.png" width="400">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/4.png" width="400">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/5.png" width="400">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/6.png" width="400">
 
     Remember, if you're confused, ask us questions!
 
