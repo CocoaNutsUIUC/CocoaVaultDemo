@@ -276,3 +276,102 @@ Once you have experienced logging in with a finger, you don't want to go back to
 ---
 
 ### Part III: Some Final Touch on UI
+
+Tip: always care about your user's experience.
+
+- A BIG problem you might not be able to catch when testing in the simulator in that the keyboard does not go away even after you pressed "return" or a button. Imagine hopelessly staring at a keyboard that blocked half of your screen for evermore. Let's fix this:
+
+    First, make our `ViewController` class a subclass of `UITextFieldDelegate`:
+
+        class ViewController: UIViewController, UITextFieldDelegate {
+
+    Then, add the following code in your `viewDidLoad()` function:
+
+        usernameTextfield.delegate = self
+        passwordTextfield.delegate = self
+
+    And write the following two functions:
+
+         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+             hideKeyboard()
+             return true
+         }
+
+         func hideKeyboard() {
+             usernameTextfield.resignFirstResponder()
+             passwordTextfield.resignFirstResponder()
+         }
+
+    Finally, call `hideKeyboard()` in our `IBActions` functions:
+
+        @IBAction func touchButtonTouched(_ sender: Any) {
+            hideKeyboard()
+            authenticateUser()
+        }
+        @IBAction func logInButtonTouched(_ sender: Any) {
+            hideKeyboard()
+            login(username: usernameTextfield.text!, password: passwordTextfield.text!)
+        }
+        @IBAction func createButtonTouched(_ sender: Any) {
+            hideKeyboard()
+            createAccount(username: usernameTextfield.text!, password: passwordTextfield.text!)
+        }
+
+    This effectively hides resign the keyboard whenever a button is pressed or return is pressed.
+
+- Another BIG problem is that we don't want the user to be able to log in or create when either username is empty or password is empty! To fix this, we disable the buttons until we detect some inputs:
+
+    Add the following code in your `viewDidLoad()` function:
+
+        LogInButton.isEnabled = false
+        CreateButton.isEnabled = false
+        passwordTextfield.isSecureTextEntry = true
+
+        NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: passwordTextfield, queue: .main) { (notification) in
+            self.setButton()
+        }
+        NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: usernameTextfield, queue: .main) { (notification) in
+            self.setButton()
+        }
+
+    And then write the function `setButton`:
+
+        func setButton() {
+            if (usernameTextfield.text != "" && passwordTextfield.text != "") {
+                LogInButton.isEnabled = true
+                CreateButton.isEnabled = true
+            } else {
+                LogInButton.isEnabled = false
+                CreateButton.isEnabled = false
+            }
+        }
+
+    Awesome! Test the code to see if it works.
+
+- Lastly, our `loadData()` doesn't really do anything, which is very awkward. Let's add some code to the function:
+
+        func loadData() {    
+            UIView.animate(withDuration: 0.7, animations: {
+                self.TouchButton.alpha = 0
+                self.CreateButton.alpha = 0
+                self.LogInButton.alpha = 0
+                self.usernameTextfield.alpha = 0
+                self.passwordTextfield.alpha = 0
+                self.vaultLabel.alpha = 0
+            }) { (complete) in
+                self.vaultLabel.text = "You are now inside the CocoaVault! Money! So much money! Cocoanuts! So much Cocoanuts!"
+                self.vaultLabel.alpha = 1
+            }
+        }
+
+    Now, you have a vault!
+
+    Great job! Your `ViewController.swift` should look something like this:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/whole_1.png)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/whole_2.png)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/whole_3.png)
+
+---
+
+### Thanks!

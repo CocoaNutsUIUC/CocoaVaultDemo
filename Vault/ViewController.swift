@@ -26,19 +26,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // later
+
+        usernameTextfield.delegate = self
+        passwordTextfield.delegate = self
+        
         
         LogInButton.isEnabled = false
         CreateButton.isEnabled = false
         passwordTextfield.isSecureTextEntry = true
-        
-        // later
-        
-        usernameTextfield.delegate = self
-        passwordTextfield.delegate = self
-        
-        // later
         
         NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: passwordTextfield, queue: .main) { (notification) in
             self.setButton()
@@ -70,6 +65,69 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    // MARK: UI Handling
+    
+    func showAlert(message: String) {
+        DispatchQueue.main.async {
+            let alertVC = UIAlertController(title: "Uh Oh!", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertVC.addAction(okAction)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
+    
+    func loadData() {
+        UIView.animate(withDuration: 0.7, animations: {
+            self.TouchButton.alpha = 0
+            self.CreateButton.alpha = 0
+            self.LogInButton.alpha = 0
+            self.usernameTextfield.alpha = 0
+            self.passwordTextfield.alpha = 0
+            self.vaultLabel.alpha = 0
+        }) { (complete) in
+            self.vaultLabel.text = "You are now inside the CocoaVault! Money! So much money! Cocoanuts! So much Cocoanuts!"
+            self.vaultLabel.alpha = 1
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
+    }
+    
+    func hideKeyboard() {
+        usernameTextfield.resignFirstResponder()
+        passwordTextfield.resignFirstResponder()
+    }
+    
+    func setButton() {
+        if (usernameTextfield.text != "" && passwordTextfield.text != "") {
+            LogInButton.isEnabled = true
+            CreateButton.isEnabled = true
+        } else {
+            LogInButton.isEnabled = false
+            CreateButton.isEnabled = false
+        }
+    }
+    
+    // MARK: Password
+    
+    func login(username: String, password: String) {
+        guard let retrieved = keychain.loadPassword(username: username) else {
+            showAlert(message: "No username found!")
+            return
+        }
+        if (retrieved as String == password) {
+            loadData()
+        } else {
+            showAlert(message: "Wrong password!")
+        }
+    }
+    
+    func createAccount(username: String, password: String) {
+        keychain.savePassword(username: username, password: password)
+    }
+
     
     // MARK: TouchID
     
@@ -102,77 +160,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
-        }
-    }
-    
-    
-    
-    
-    // MARK: Password
-    
-    func login(username: String, password: String) {
-        guard let retrieved = keychain.loadPassword(username: username) else {
-            showAlert(message: "No username found!")
-            return
-        }
-        if (retrieved as String == password) {
-            loadData()
-        } else {
-            showAlert(message: "Wrong password!")
-        }
-    }
-    
-    func createAccount(username: String, password: String) {
-        keychain.savePassword(username: username, password: password)
-    }
-    
-    // MARK: UI Handling
-    
-    func showAlert(message: String) {
-        DispatchQueue.main.async {
-            let alertVC = UIAlertController(title: "Uh Oh!", message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alertVC.addAction(okAction)
-            self.present(alertVC, animated: true, completion: nil)
-        }
-    }
-    
-    func loadData() {
-        
-        // later
-        
-        UIView.animate(withDuration: 0.7, animations: {
-            self.TouchButton.alpha = 0
-            self.CreateButton.alpha = 0
-            self.LogInButton.alpha = 0
-            self.usernameTextfield.alpha = 0
-            self.passwordTextfield.alpha = 0
-            self.vaultLabel.alpha = 0
-        }) { (complete) in
-            self.vaultLabel.text = "You are now inside the CocoaVault! Money! So much money! Cocoanuts! So much Cocoanuts!"
-            self.vaultLabel.alpha = 1
-        }
-    }
-    
-    // later
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
-    
-    func hideKeyboard() {
-        usernameTextfield.resignFirstResponder()
-        passwordTextfield.resignFirstResponder()
-    }
-    
-    func setButton() {
-        if (usernameTextfield.text != "" && passwordTextfield.text != "") {
-            LogInButton.isEnabled = true
-            CreateButton.isEnabled = true
-        } else {
-            LogInButton.isEnabled = false
-            CreateButton.isEnabled = false
         }
     }
 
