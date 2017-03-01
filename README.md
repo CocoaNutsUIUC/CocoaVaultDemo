@@ -37,7 +37,7 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 - Open Xcode 8.0+, click on ***"Create a new Xcode project"*** and select ***"Single View Application"***, then click next.
 - Fill in the name ***"CocoaVault"*** (or some other name if you're feeling rebellious) and click next.
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_project.gif)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_project.gif)
 
 ---
 
@@ -49,21 +49,23 @@ Steve is very much a minimalist when it comes to design. So we'll set up our app
 
 - Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/darg_views.gif)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/darg_views.gif)
 
 - Rename our label to "CocoaVault" and set the font to **bold**, and rename the left button to "***Log In***", the right button to "***Touch***", and the bottom button to "***Create New Vault***".
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/rename_views.gif)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/rename_views.gif)
 
 - Next step: add constraints to out views! Now, this step is kinda confusing ... and can be easily messed up, so if you run into any problem, place ask us to help!
+
 - **Note: use `Control` + drag from one view to another view to create constraints between them!**
+
 - Do this first:
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout.gif)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout.gif)
 
 - Do this after:
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout_2.gif)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout_2.gif)
 
 - After this step, you should have the following constraints on each of our views:
 
@@ -80,7 +82,7 @@ Steve is very much a minimalist when it comes to design. So we'll set up our app
 
 - In your ***Main.storyboard***, open the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and *Control drag* your views to inside the class.
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_outlets.gif)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_outlets.gif)
 
 - Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` are event-triggered functions that will let us respond to user interactions.
 
@@ -88,7 +90,7 @@ Steve is very much a minimalist when it comes to design. So we'll set up our app
 
 ### Coding!
 
-**Note: You should not simply copy the codes from the tutorial! Instead, try to understand every line of code as you type them. If you run into something you don't understand, either ask questions or stackoverflow it! Learning is an active process!
+*Note: You should not simply copy the codes from the tutorial! Instead, try to understand every line of code as you type them. If you run into something you don't understand, either ask questions or stackoverflow it! Learning is an active process!*
 
 ---
 
@@ -124,12 +126,52 @@ In order to use Keychain to store and retrieve username and password, we need to
 
 - Next, create two `private` functions called `save` and `load` inside your class:
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load.png)
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load.png)
 
+    The key to understanding these code is to understand the notice that they are simply wrappers for the following three functions:
 
+    - `SecItemDelete`: deletes a matching entry from the keychain
+    - `SecItemAdd`: add an entry to the keychain
+    - `SecItemCopyMatching`: find a matching entry from the keychain; notice how we pass in `&data`, the pointer of `data` as an argument so that the `SecItemCopyMatching` will set its value (wow, much C!)
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load_password.png)
+    - The rest of the code is mostly setups and type conversions.
 
-![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/keychain_class.png)
+- Then let's create two `public` functions that allow other classes to call on `save` and `load`:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load_password.png)
+
+- Great! Lastly, let's add this one line to our `KeyChainHelper` class:
 
         public static let standard = KeychainHelper()
+
+    This creates what's called a ***Singleton***, a single instance of our class that coordinates across the system. In other word, we don't have to insatiate a new instance of `KeyChainHelper` every time we want to use the keychain, instead we call on `KeyChainHelper.standard`.
+
+- Great! Now the complete code of `KeyChainHelper.swift` should look something like this:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/keychain_class.png)
+
+---
+
+### Part II: Log In / Create:
+
+With a working keychain wrapper, let's make our `loginButton` and `createButton` functional as heck. Move to `ViewController.swift` in your Navigator! We'll work only this file for the rest of this tutorial.
+
+- First, let's write an alert function that shows a pop-up message for situations say when a user enters the wrong password. Add the following function to your ViewController class:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/alert.png)
+
+    Notice how we wrapped our codes in `DispatchQueue.main.async`? The `DispatchQueue.main` asynchronously runs our code in the main thread, since we don't want any background process to clog up our UI. This will come in handy later when we use TouchID, the background process of which can be quite slow!
+
+- Next, let's write a function `loadData()` that will be called when the user successfully log in. For now, let's make it print out "SUCCESS!"
+
+        func loadData() {
+            print("SUCCESS!")
+        }
+
+- Next, let's write the functions `login()` and `create()`:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/login_create.png)
+
+    In `login()`, we check if an account is found under `username`. Recall that we set `contentsOfKeychain` to `nil` if nothing was found in a query. If an account if found, we check if `password` matches and respond correspondingly.
+
+    In `create()`, we simply save the account/username and overwrite any previous entry. (*Would you do this in a real app? What would you change it to?*)

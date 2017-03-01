@@ -102,6 +102,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Password
     
+    
+    
+    
     func login(username: String, password: String) {
         
         guard let retrieved = keychain.loadPassword(username: username) else {
@@ -115,10 +118,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     func createAccount(username: String, password: String) {
         
         keychain.savePassword(username: username, password: password)
     }
+    
+    
+    
+    
+    
     
     // MARK: UI Handling
     
