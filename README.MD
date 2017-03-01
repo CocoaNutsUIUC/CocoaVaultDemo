@@ -16,7 +16,7 @@
 
 You will learn how to store & retrieve user passwords using ***Keychain Services***, how to integrate ***TouchID*** authentication, and how to make a simple but beautiful login page.
 
-[screen_shot]
+![demo](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/demo.gif)
 
 ---
 
@@ -37,7 +37,7 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 1. Open Xcode 8.0+, click on ***"Create a new Xcode project"*** and select ***"Single View Application"***, then click next.
 2. Fill in the name ***"CocoaVault"*** (or some other name if you're feeling rebellious) and click next.
 
-[create_project]
+![create_projects](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_project.gif)
 
 ---
 
@@ -48,27 +48,32 @@ Steve is a minimalistic when it comes to design. So we'll set up our app to be a
 3. Go to ***Main.storyboard*** in your Navigator, here's where we set up the UI for our app.
 4. Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
 
-[drag-views]
+![drag_views](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/darg_views.gif)
 
-4. Rename our label to "CocoaVault" and set the font to **bold**, and rename the three buttons to "Log In", "Touch", and "Create New Vault" respectively.
+4. Rename our label to "CocoaVault" and set the font to **bold**, and rename the left button to "***Log In***", the right button to "***Touch***", and the bottom button to "***Create New Vault***".
 
-[rename_views]
+![rename_views](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/rename_views.gif)
 
-5. Add the following constraints as shown:
+5. Add the following constraints to our view:
 
 (*Now, I admit that this step is kinda confusing ... and can be easily messed up, so if you run into any problem, place ask us to help!*)
 
 (**Note: use `Control` + drag from one view to another view to create constraints between them!**)
 
-Do this first: [auto_layout_1]
+Do this first: ![auto_layout](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout.gif)
 
-Do this after: [auto_layout_2]
+Do this after: [auto_layout_2](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout_2.gif)
+
+**After this step, you should have the following constraints on each of our views:**
+
+
+
 
 Perfect! Now, we just need to make these graphical ***buttons***, ***textfields***, and ***label*** manifest in our code. We do so by creating ***outlets***!
 
 6. In your ***Main.storyboard***, open the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and *Control drag* your views to inside the class.
 
-[create_outlets]
+![create_outlets](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_outlets.gif)
 
 Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` are event-triggered functions that will let us respond to user interactions.
 
