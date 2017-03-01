@@ -47,7 +47,7 @@ Steve is very much a minimalist when it comes to design. So we'll set up our app
 
 Go to ***Main.storyboard*** in your Navigator, follow the video to set up your storyboard:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ypAaZUbrBeg" frameborder="0" allowfullscreen></iframe>
+[![Storyboard_Tutorial_Video](http://img.youtube.com/vi/ypAaZUbrBeg/0.jpg)](http://www.youtube.com/watch?v=ypAaZUbrBeg "CocoaVault_Storyboard_Demo ")
 
 1. Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
 
