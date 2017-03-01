@@ -45,46 +45,32 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 
 Steve is very much a minimalist when it comes to design. So we'll set up our app to be as simple and easy-to-use as humanly possible, which is often a good design practice!
 
-- Go to ***Main.storyboard*** in your Navigator, here's where we set up the UI for our app.
+Go to ***Main.storyboard*** in your Navigator, follow the video to set up your storyboard:
 
-- Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ypAaZUbrBeg" frameborder="0" allowfullscreen></iframe>
 
-    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/darg_views.gif)
+1. Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
 
-- Rename our label to "CocoaVault" and set the font to **bold**, and rename the left button to "***Log In***", the right button to "***Touch***", and the bottom button to "***Create New Vault***".
+2. Rename our label to "CocoaVault" and set the font to **bold**, and rename the left button to "***Log In***", the right button to "***Touch***", and the bottom button to "***Create New Vault***".
 
-    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/rename_views.gif)
+3. Add constraints to out views! Now, this step can be kinda confusing, so if you've any question, please ask!
 
-- Next step: add constraints to out views! Now, this step is kinda confusing ... and can be easily messed up, so if you run into any problem, place ask us to help!
+4. Next, to make these buttons, textfields, and label manifest in our code, create ***outlets*** using the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and `Control + drag` your views to inside the class.
 
-- **Note: use `Control` + drag from one view to another view to create constraints between them!**
+    - *Note: use `Control` + drag from one view to another view to create constraints between them!*
+    
+    - *Note: we created 6 `IBOutlets` and 3 `IBActions`, not 9 `IBOutlets`. The `IBActions` are event-triggered functions for user interaction.*
+    
+    - *Note: you should have the following constraints on each of our views:*
+    
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/1.png" width="425">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/2.png" width="425">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/3.png" width="425">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/4.png" width="425">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/5.png" width="425">
+    <img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/6.png" width="425">
 
-- Do this first:
-
-    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout.gif)
-
-- Do this after:
-
-    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout_2.gif)
-
-- After this step, you should have the following constraints on each of our views:
-
-<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/1.png" width="425">
-<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/2.png" width="425">
-<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/3.png" width="425">
-<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/4.png" width="425">
-<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/5.png" width="425">
-<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/6.png" width="425">
-
-- Remember, if you're confused, ask us questions!
-
-- Perfect! Now, we just need to make these graphical ***buttons***, ***textfields***, and ***label*** manifest in our code. We do so by creating ***outlets***!
-
-- In your ***Main.storyboard***, open the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and *Control drag* your views to inside the class.
-
-    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_outlets.gif)
-
-- Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` are event-triggered functions that will let us respond to user interactions.
+    Remember, if you're confused, ask us questions!
 
 ---
 
