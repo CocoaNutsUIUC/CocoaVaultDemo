@@ -126,3 +126,9 @@ In order to use Keychain to store and retrieve username and password, we need to
 - Next, create two `private` functions called `save` and `load` inside your class:
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load.png)
+
+![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load_password.png)
+
+![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/keychain_class.png)
+
+        public static let standard = KeychainHelper()
