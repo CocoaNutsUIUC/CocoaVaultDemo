@@ -43,7 +43,7 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 
 ### Storyboard Set Up
 
-Steve is a minimalistic when it comes to design. So we'll set up our app to be as simple and easy-to-use as humanly possible, which is often a good design practice!
+Steve is very much a minimalist when it comes to design. So we'll set up our app to be as simple and easy-to-use as humanly possible, which is often a good design practice!
 
 - Go to ***Main.storyboard*** in your Navigator, here's where we set up the UI for our app.
 
@@ -76,13 +76,13 @@ Steve is a minimalistic when it comes to design. So we'll set up our app to be a
 
 - Remember, if you're confused, ask us questions!
 
-Perfect! Now, we just need to make these graphical ***buttons***, ***textfields***, and ***label*** manifest in our code. We do so by creating ***outlets***!
+- Perfect! Now, we just need to make these graphical ***buttons***, ***textfields***, and ***label*** manifest in our code. We do so by creating ***outlets***!
 
 - In your ***Main.storyboard***, open the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and *Control drag* your views to inside the class.
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_outlets.gif)
 
-Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` are event-triggered functions that will let us respond to user interactions.
+- Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` are event-triggered functions that will let us respond to user interactions.
 
 ---
 
@@ -93,18 +93,36 @@ Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` ar
 
 ---
 
-### Part I: Password:
+### Part I: Keychain:
 
-- First, let's write an alert function that shows the user a pop-up alert if say he or she enters the wrong password!
+In order to use Keychain to store and retrieve username and password, we need to write a ***Keychain Wrapper*** that helps us to abstract away the nitty gritty stuff of interacting with they keychain API. There're many open sourced Keychain wrappers that are available online. But in order to help you understand how Keychain works, we will write a ***bare-bone version*** of a wrapper.
 
-Add the following code to your `ViewController` class:
+- First, create a new Swift file in your project, name it `KeychainHelper.swift`.
 
-    func showAlert(message: String) {
+- Create a `open class` named `KeychainHelper` in your file:
 
-        DispatchQueue.main.async {
-            let alertVC = UIAlertController(title: "Uh Oh!", message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alertVC.addAction(okAction)
-            self.present(alertVC, animated: true, completion: nil)
+        open class KeyChainHelper {
+            // our wrapper
         }
-    }
+
+    The `open` keyword here is very close to `static`, making the class and its members accessible by any source file. Different from `static`, it allows you to subclass the open class.
+
+- Copy and paste the following ***boilerplate code*** into your file, right on top of your class:
+
+        import Security
+
+        let serviceValue = "KeyForPassword"
+        let kSecClassValue = NSString(format: kSecClass)
+        let kSecAttrAccountValue = NSString(format: kSecAttrAccount)
+        let kSecValueDataValue = NSString(format: kSecValueData)
+        let kSecClassGenericPasswordValue = NSString(format: kSecClassGenericPassword)
+        let kSecAttrServiceValue = NSString(format: kSecAttrService)
+        let kSecMatchLimitValue = NSString(format: kSecMatchLimit)
+        let kSecReturnDataValue = NSString(format: kSecReturnData)
+        let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
+
+    These codes are some standard definitions to be used to create `keychain query` objects. It's fine to just copy and paste this time.
+
+- Next, create two `private` functions called `save` and `load` inside your class:
+
+![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load.gif)

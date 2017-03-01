@@ -23,7 +23,7 @@ let kSecMatchLimitValue = NSString(format: kSecMatchLimit)
 let kSecReturnDataValue = NSString(format: kSecReturnData)
 let kSecMatchLimitOneValue = NSString(format: kSecMatchLimitOne)
 
-open class KeychainHelper: NSObject {
+open class KeychainHelper {
     
     public static let standard = KeychainHelper()
     
