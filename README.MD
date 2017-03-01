@@ -45,19 +45,19 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 
 Steve is a minimalistic when it comes to design. So we'll set up our app to be as simple and easy-to-use as humanly possible, which is often a good design practice!
 
-3. Go to ***Main.storyboard*** in your Navigator, here's where we set up the UI for our app.
+- Go to ***Main.storyboard*** in your Navigator, here's where we set up the UI for our app.
 
-4. Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
+- Drag one ***Label***, two ***Text Field***, and three ***Button*** onto your fake iPhone screen in the middle. It doesn't matter where *exactly* you put them right now. Once we add some constraints, they'll fall in place pretty neatly.
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/darg_views.gif)
 
-4. Rename our label to "CocoaVault" and set the font to **bold**, and rename the left button to "***Log In***", the right button to "***Touch***", and the bottom button to "***Create New Vault***".
+- Rename our label to "CocoaVault" and set the font to **bold**, and rename the left button to "***Log In***", the right button to "***Touch***", and the bottom button to "***Create New Vault***".
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/rename_views.gif)
 
-5. Add the following constraints to our view:
+- Add the following constraints to our view:
 
-(*Now, I admit that this step is kinda confusing ... and can be easily messed up, so if you run into any problem, place ask us to help!*)
+(*Now, this step is kinda confusing ... and can be easily messed up, so if you run into any problem, place ask us to help!*)
 
 (**Note: use `Control` + drag from one view to another view to create constraints between them!**)
 
@@ -82,7 +82,7 @@ Again, if you're confused, ask us questions!
 
 Perfect! Now, we just need to make these graphical ***buttons***, ***textfields***, and ***label*** manifest in our code. We do so by creating ***outlets***!
 
-6. In your ***Main.storyboard***, open the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and *Control drag* your views to inside the class.
+- In your ***Main.storyboard***, open the Assistance Editor (*the intersecting circles icon upper left corner*), select `ViewController.swift` and *Control drag* your views to inside the class.
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/create_layouts.gif)
 
