@@ -27,12 +27,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        
         LogInButton.isEnabled = false
         CreateButton.isEnabled = false
         passwordTextfield.isSecureTextEntry = true
         
+        
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
+        
         
         NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: passwordTextfield, queue: .main) { (notification) in
             self.setButton()
