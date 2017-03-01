@@ -7,7 +7,7 @@
 
 - This is a tutorial made by Steven Shang for CocoaNuts.
 - CocoaNuts is a community of iOS developers. We meet weekly on Thursday in *Siebel Center 2124* from *6:30* to *8:30 PM*.
-- It's okay to feel overwhelmed by the tutorial. We're here to help. 
+- It's okay to feel overwhelmed by the tutorial. We're here to help.
 - Ask lots of questions!
 
 ---
@@ -25,7 +25,7 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 
 - Xcode is an integrated development environment (IDE) which contains all the tools you need to build an iOS, watchOS, macOS, or tvOS app.
 - On the left side, you have the ***Navigator***; in the middle, you have the ***Editor***; on the right side, you have various ***Utilities***; on the top, you have the ***toolbar***.
-- Xcode uses ***storyboards*** to lay out the app's user interface. It automatically generates a XML document, so you won't have to. 
+- Xcode uses ***storyboards*** to lay out the app's user interface. It automatically generates a XML document, so you won't have to.
 - Because we love iOS devices of all shapes and sizes, Xcode's ***storyboards*** use what's called ***Auto Layout*** to dynamically calculate the size and position of all the views in your app. You just have to create constraints on those  views.
 - Press `Command + B` to build your project. Press `Command + R` to run your project in a simulator. Press `Command + Shift + K` to clean your built codes. These shortcuts will come in handy in the future!
 
@@ -86,13 +86,25 @@ Notice that we created six `IBOutlets` and three `IBActions`. The `IBActions` ar
 
 ---
 
-### Coding Password Authenticator
-
-Cool! Now we're ready to code.
-
-Let's first create an alert function that let us communicate with the users when they enter a wrong password and so on:
-
-Add the following code to your ViewController class:
+### Coding!
 
 
+***Note: You should not simply copy and paste codes from the tutorial! Instead, type out every single lines of code! The process of writing out codes will help you to understand and learn them.***
 
+---
+
+### Part I: Password:
+
+- First, let's write an alert function that shows the user a pop-up alert if say he or she enters the wrong password!
+
+Add the following code to your `ViewController` class:
+
+    func showAlert(message: String) {
+
+        DispatchQueue.main.async {
+            let alertVC = UIAlertController(title: "Uh Oh!", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertVC.addAction(okAction)
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
