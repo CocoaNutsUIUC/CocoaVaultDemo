@@ -170,8 +170,50 @@ With a working keychain wrapper, let's make our `loginButton` and `createButton`
 
 - Next, let's write the functions `login()` and `create()`:
 
+    First, add this line of code to your class:
+
+        let keychain = KeychainHelper.standard
+
+    As we've talked about before, this lets us work with a Singleton. Once you've done this, write the following codes:
+
     ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/login_create.png)
 
     In `login()`, we check if an account is found under `username`. Recall that we set `contentsOfKeychain` to `nil` if nothing was found in a query. If an account if found, we check if `password` matches and respond correspondingly.
 
     In `create()`, we simply save the account/username and overwrite any previous entry. (*Would you do this in a real app? What would you change it to?*)
+
+- Cool beans! Now call the functions in your `IBActions` and we're ready to move on to the next section:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/login_IB.png)
+
+    You can test your code at this point. See if "SUCCESS" is printed onto your console after creating and logging in.
+
+---
+
+### Part III: TouchID
+
+Once you have experienced logging in with a finger, you don't want to go back to two fingers. TouchID is a great feature that improves the user experience of your landing page.
+
+**Overview**
+
+- Apple's framework called Local Authentication allows you to authenticate a user using local fingerprints. The framework uses one crucial function:
+
+        func evaluatePolicy(policy: LAPolicy, localizedReason localizedReason: String!, reply: ((Bool, NSError!) -> Void)!)
+
+    The function not only authenticates the user, it also checks the various possibilities for error. Some devices may not support TouchID and so on.
+
+**Implementation**
+
+- Add the following function to your `ViewController` class:
+
+    ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/touch_ID.png)
+
+    And then update our `touchButtonTouched` function to call on `authenticateUser()`:
+
+        @IBAction func touchButtonTouched(_ sender: Any) {
+            authenticateUser()
+        }
+
+    Awesome, now let's analyze our code line by line!
+
+    

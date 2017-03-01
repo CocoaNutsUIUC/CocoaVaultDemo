@@ -27,15 +27,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        // later
         
         LogInButton.isEnabled = false
         CreateButton.isEnabled = false
         passwordTextfield.isSecureTextEntry = true
         
+        // later
         
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
         
+        // later
         
         NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: passwordTextfield, queue: .main) { (notification) in
             self.setButton()
@@ -65,6 +68,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         hideKeyboard()
         createAccount(username: usernameTextfield.text!, password: passwordTextfield.text!)
     }
+    
+    
     
     // MARK: TouchID
     
@@ -100,13 +105,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    
+    
     // MARK: Password
     
-    
-    
-    
     func login(username: String, password: String) {
-        
         guard let retrieved = keychain.loadPassword(username: username) else {
             showAlert(message: "No username found!")
             return
@@ -118,21 +122,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     func createAccount(username: String, password: String) {
-        
         keychain.savePassword(username: username, password: password)
     }
-    
-    
-    
-    
-    
     
     // MARK: UI Handling
     
     func showAlert(message: String) {
-        
         DispatchQueue.main.async {
             let alertVC = UIAlertController(title: "Uh Oh!", message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -142,6 +138,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loadData() {
+        
+        // later
         
         UIView.animate(withDuration: 0.7, animations: {
             self.TouchButton.alpha = 0
@@ -155,6 +153,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.vaultLabel.alpha = 1
         }
     }
+    
+    // later
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
