@@ -60,14 +60,24 @@ Steve is a minimalistic when it comes to design. So we'll set up our app to be a
 
 (**Note: use `Control` + drag from one view to another view to create constraints between them!**)
 
-Do this first: ![auto_layout](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout.gif)
+**Do this first:**
 
-Do this after: [auto_layout_2](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout_2.gif)
+![auto_layout](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout.gif)
+
+**Do this after:**
+
+![auto_layout_2](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/auto_layout_2.gif)
 
 **After this step, you should have the following constraints on each of our views:**
 
+<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/1.png" width="400">
+<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/2.png" width="400">
+<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/3.png" width="400">
+<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/4.png" width="400">
+<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/5.png" width="400">
+<img src="https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/6.png" width="400">
 
-
+Again, if you're confused, ask us questions!
 
 Perfect! Now, we just need to make these graphical ***buttons***, ***textfields***, and ***label*** manifest in our code. We do so by creating ***outlets***!
 
@@ -86,3 +96,6 @@ Cool! Now we're ready to code.
 Let's first create an alert function that let us communicate with the users when they enter a wrong password and so on:
 
 Add the following code to your ViewController class:
+
+
+
