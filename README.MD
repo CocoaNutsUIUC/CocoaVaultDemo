@@ -27,7 +27,7 @@ You will learn how to store & retrieve user passwords using ***Keychain Services
 - On the left side, you have the ***Navigator***; in the middle, you have the ***Editor***; on the right side, you have various ***Utilities***; on the top, you have the ***toolbar***.
 - Xcode uses ***storyboards*** to lay out the app's user interface. It automatically generates a XML document, so you won't have to. 
 - Because we love iOS devices of all shapes and sizes, Xcode's ***storyboards*** use what's called ***Auto Layout*** to dynamically calculate the size and position of all the views in your app. You just have to create constraints on those  views.
-- Press `Command + B` to build your project. Press `Command + R` to run your project in a simulator. Press `Command + shit + K` to clean your built codes. These shortcuts will come in handy in the future!
+- Press `Command + B` to build your project. Press `Command + R` to run your project in a simulator. Press `Command + Shift + K` to clean your built codes. These shortcuts will come in handy in the future!
 
 ---
 
