@@ -16,7 +16,7 @@
 
 You will learn how to store & retrieve user passwords using ***Keychain Services***, how to integrate ***TouchID*** authentication, and how to make a simple but beautiful login page.
 
-[screen_shot]
+[screen_shot]: https://github.com/sstevenshang/CocoaVaultDemo/blob/master/GIFs/demo.gif
 
 ---
 
