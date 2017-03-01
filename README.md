@@ -88,8 +88,7 @@ Steve is very much a minimalist when it comes to design. So we'll set up our app
 
 ### Coding!
 
-
-***Note: You should not simply copy and paste codes from the tutorial! Instead, type out every single lines of code! The process of writing out codes will help you to understand and learn them.***
+**Note: You should not simply copy the codes from the tutorial! Instead, try to understand every line of code as you type them. If you run into something you don't understand, either ask questions or stackoverflow it! Learning is an active process!
 
 ---
 
@@ -126,6 +125,8 @@ In order to use Keychain to store and retrieve username and password, we need to
 - Next, create two `private` functions called `save` and `load` inside your class:
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load.png)
+
+
 
 ![](https://github.com/sstevenshang/CocoaVaultDemo/blob/master/Images/save_load_password.png)
 
